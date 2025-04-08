@@ -36,32 +36,68 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Postagem> postagens;
 
-    // Getters e Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Usuario(String nome, String usuario, String senha, String foto, TipoUsuario tipo) {
+        this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.foto = foto;
+        this.tipo = tipo;
+    }
+    public Long getId() { 
+        return id;
+     }
+    public void setId(Long id) {
+         this.id = id; 
+        }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getNome() { 
+        return nome; 
+    }
+    public void setNome(String nome) { 
+        this.nome = nome; 
+    }
 
-    public String getUsuario() { return usuario; }
-    public void setUsuario(String usuario) { this.usuario = usuario; }
+    public String getUsuario() { 
+        return usuario; 
+    }
+    public void setUsuario(String usuario) { 
+        this.usuario = usuario;
+     }
 
-    public String getSenha() { return senha; }
-    public void setSenha(String senha) { this.senha = senha; }
+    public String getSenha() { 
+        return senha; 
+    }
+    public void setSenha(String senha) { 
+        this.senha = senha; 
+    }
 
-    public String getFoto() { return foto; }
-    public void setFoto(String foto) { this.foto = foto; }
+    public String getFoto() { 
+        return foto;
+     }
+    public void setFoto(String foto) {
+         this.foto = foto;
+         }
 
-    public LocalDateTime getDataCriacao() { return dataCriacao; }
-    public void setDataCriacao(LocalDateTime dataCriacao) { this.dataCriacao = dataCriacao; }
+    public LocalDateTime getDataCriacao() {
+         return dataCriacao; 
+        }
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+         this.dataCriacao = dataCriacao; 
+        }
 
-    public TipoUsuario getTipo() { return tipo; }
-    public void setTipo(TipoUsuario tipo) { this.tipo = tipo; }
+    public TipoUsuario getTipo() { 
+        return tipo; 
+    }
+    public void setTipo(TipoUsuario tipo) { 
+        this.tipo = tipo; 
+    }
 
-    public List<Postagem> getPostagens() { return postagens; }
-    public void setPostagens(List<Postagem> postagens) { this.postagens = postagens; }
-
-    // Métodos da interface UserDetails
+    public List<Postagem> getPostagens() { 
+        return postagens; 
+    }
+    public void setPostagens(List<Postagem> postagens) {
+         this.postagens = postagens; 
+        }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(tipo.name()));

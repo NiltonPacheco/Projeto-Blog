@@ -68,6 +68,11 @@ public class Postagem {
     public Tema getTema() {
         return tema;
     }
-
+    public LocalDateTime getData() {
+        return data;
+    }
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
 
 }

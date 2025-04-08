@@ -8,7 +8,10 @@ public class UsuarioLoginDTO {
     private String senha;
     private String foto;
     private String token;
-
+    public UsuarioLoginDTO(String usuario, String senha) {
+        this.usuario = usuario;
+        this.senha = senha;
+    }
     public Long getId() {
         return id;
     }

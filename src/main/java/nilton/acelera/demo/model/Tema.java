@@ -19,6 +19,11 @@ public class Tema {
     private String descricao;
     @OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
     private List<Postagem> postagens;
+    public Tema(Long id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
+    
     public void setId(Long id) {
         this.id = id;
     }
