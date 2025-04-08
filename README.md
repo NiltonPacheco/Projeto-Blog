@@ -49,7 +49,6 @@ O projeto consiste em uma API RESTful construída com Spring Boot, fornecendo fu
 * **SpringDoc OpenAPI:** Para geração automática da documentação da API (Swagger UI).
 * **Maven:** Ferramenta de gerenciamento de dependências e build.
 * **JUnit:** Framework para testes unitários.
-* **Mockito:** Framework para criação de mocks em testes unitários.
 
 ## Pré-requisitos
 
