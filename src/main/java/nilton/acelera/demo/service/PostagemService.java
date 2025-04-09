@@ -43,7 +43,6 @@ public class PostagemService {
 
     @Transactional
     public Postagem criar(Postagem postagem) {
-        // Aqui você pode adicionar validações de regras de negócio antes de salvar
         return postagemRepository.save(postagem);
     }
 
