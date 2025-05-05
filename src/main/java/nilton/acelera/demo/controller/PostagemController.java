@@ -24,7 +24,7 @@ public class PostagemController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Listar todas as postagens
+    // Listar todas as postagens.
     @GetMapping
     public ResponseEntity<List<Postagem>> listarPostagens() {
         return ResponseEntity.ok(postagemRepository.findAll());
@@ -59,7 +59,7 @@ public ResponseEntity<Postagem> atualizarPostagem(@RequestBody Postagem postagem
 
     Postagem postagemAtual = postagemExistente.get();
 
-    // Corrigido aqui:
+   
     boolean isAdmin = usuarioLogado.getTipo().name().equals("ADMIN") || usuarioLogado.getTipo().name().equals("ROLE_ADMIN");
     boolean isDono = postagemAtual.getUsuario().getId().equals(usuarioLogado.getId());
 

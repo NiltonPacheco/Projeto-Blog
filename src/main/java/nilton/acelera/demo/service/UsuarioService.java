@@ -57,7 +57,7 @@ public class UsuarioService {
             });
     }
 
-    // Atualizar usuário (com validação de senha)
+    // Atualizar usuário (com validação de senha).
     @Transactional
     public Optional<Usuario> atualizarUsuario(Usuario usuarioAtualizado) {
         return usuarioRepository.findById(usuarioAtualizado.getId())

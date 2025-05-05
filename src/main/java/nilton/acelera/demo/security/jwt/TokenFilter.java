@@ -52,7 +52,7 @@ public class TokenFilter extends OncePerRequestFilter {
             Optional<Usuario> usuarioOpt = usuarioRepository.findByUsuario(usuarioEmail); // Retorna um Optional<Usuario>
     
             if (usuarioOpt.isPresent()) {
-                Usuario usuario = usuarioOpt.get();  // Extraímos o usuário de dentro do Optional
+                Usuario usuario = usuarioOpt.get();  
                 logger.info("Usuário encontrado: " + usuario.getUsuario());
                 var authentication = new UsernamePasswordAuthenticationToken(
                     usuario,

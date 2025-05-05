@@ -23,5 +23,5 @@ import org.springframework.context.annotation.Configuration;
     bearerFormat = "JWT"
 )
 public class ConfiguracaoSwagger {
-    // Configuração padrão do Swagger para suporte a JWT
+    // Configuração padrão do Swagger para suporte a JWT.
 }

@@ -19,7 +19,7 @@ public class TemaController {
     public ResponseEntity<List<Tema>> listarTemas() {
         return ResponseEntity.ok(temaRepository.findAll());
     }
-
+ //.
     @GetMapping("/{id}")
     public ResponseEntity<Tema> buscarPorId(@PathVariable Long id) {
         return temaRepository.findById(id)

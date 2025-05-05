@@ -11,7 +11,7 @@ public class UsuarioTokenDTO {
 
     public UsuarioTokenDTO() {
     }
-
+ 
     public UsuarioTokenDTO(Long id, String nome, String usuario, String foto, String token,String tipo) {
         this.id = id;
         this.nome = nome;

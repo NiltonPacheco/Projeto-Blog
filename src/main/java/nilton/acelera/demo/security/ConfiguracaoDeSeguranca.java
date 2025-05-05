@@ -33,20 +33,14 @@ public class ConfiguracaoDeSeguranca {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // Libera CORS preflight
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                // Libera login e cadastro
                 .requestMatchers(HttpMethod.POST, "/usuarios/login", "/usuarios/cadastrar").permitAll()
-                // Libera Swagger
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                // Libera GET para postagens e temas (listar sem login)
                 .requestMatchers(HttpMethod.GET, "/postagens/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/temas/**").permitAll()
-                // Libera POST para temas (cadastrar tema sem login, se quiser pode mudar para authenticated())
                 .requestMatchers(HttpMethod.POST, "/temas/**").permitAll()
-                // POST em postagens exige autenticação
                 .requestMatchers(HttpMethod.POST, "/postagens/**").authenticated()
-                // Qualquer outra requisição precisa estar autenticado
+                
                 .anyRequest().authenticated()
             )
             .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);

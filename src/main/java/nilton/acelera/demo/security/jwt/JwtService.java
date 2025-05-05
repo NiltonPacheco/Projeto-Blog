@@ -17,7 +17,7 @@ public class JwtService {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
 
-    private static final long EXPIRACAO = 3600000; // 1 hora
+    private static final long EXPIRACAO = 3600000; 
     // Chave de 512 bits (64 caracteres)
     private static final String SEGREDO = "suaChaveSecretaParaJWTCom512BitsMuitoSeguraEGrande12345678901234567890";
 

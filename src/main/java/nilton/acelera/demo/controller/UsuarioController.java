@@ -29,7 +29,7 @@ public class UsuarioController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    // Acesso permitido para todos (não precisa estar logado)
+    // Acesso permitido para todos, não precisa estar logado
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario) {
         return usuarioService.cadastrarUsuario(usuario)

@@ -20,7 +20,7 @@ public class Tema {
     private Long id;
     private String descricao;
     @OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonIgnore // adicionado para o front
     private List<Postagem> postagens;
     public void setId(Long id) {
         this.id = id;

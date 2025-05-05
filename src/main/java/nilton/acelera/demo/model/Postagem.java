@@ -25,7 +25,7 @@ public class Postagem {
     private LocalDateTime data = LocalDateTime.now(); 
     
     @ManyToOne
-   @JsonIgnoreProperties("postagens")
+   @JsonIgnoreProperties("postagens") // adicionado para o front
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
     
