@@ -1,10 +1,12 @@
 package nilton.acelera.demo.service;
 
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import nilton.acelera.demo.dto.UsuarioLogin;
 import nilton.acelera.demo.dto.UsuarioTokenDTO;
 import nilton.acelera.demo.model.TipoUsuario;
@@ -36,28 +38,28 @@ public class UsuarioService {
             });
     }
 
-    // Autenticar usuário (com tratamento de null)
+    // Autenticar usuário (retorna DTO com token e tipo)
     public Optional<UsuarioTokenDTO> autenticarUsuario(UsuarioLogin usuarioLogin) {
         if (usuarioLogin == null || usuarioLogin.getUsuario() == null || usuarioLogin.getSenha() == null) {
             return Optional.empty();
         }
-    
+
         return usuarioRepository.findByUsuario(usuarioLogin.getUsuario())
             .filter(usuario -> passwordEncoder.matches(usuarioLogin.getSenha(), usuario.getSenha()))
             .map(usuario -> {
-                String token = jwtService.gerarTokenComAuthorities(usuario); // <-- Aqui!
+                String token = jwtService.gerarToken(usuario.getUsuario());
                 return new UsuarioTokenDTO(
                     usuario.getId(),
                     usuario.getNome(),
                     usuario.getUsuario(),
                     usuario.getFoto(),
                     token,
-                    usuario.getTipo().name()
+                    usuario.getTipo().name() // Retorna o tipo/role como string
                 );
             });
     }
 
-    // Atualizar usuário (com validação de senha).
+    // Atualizar usuário (com validação de senha e role)
     @Transactional
     public Optional<Usuario> atualizarUsuario(Usuario usuarioAtualizado) {
         return usuarioRepository.findById(usuarioAtualizado.getId())
@@ -65,12 +67,13 @@ public class UsuarioService {
                 usuario.setNome(usuarioAtualizado.getNome());
                 usuario.setUsuario(usuarioAtualizado.getUsuario());
                 usuario.setFoto(usuarioAtualizado.getFoto());
-                
-                // Atualiza role apenas se for ADMIN
+
+                // Só ADMIN pode atualizar o tipo/role
                 if (usuarioAtualizado.getTipo() != null && usuario.getTipo() == TipoUsuario.ROLE_ADMIN) {
                     usuario.setTipo(usuarioAtualizado.getTipo());
                 }
 
+                // Atualiza senha se foi informada
                 if (usuarioAtualizado.getSenha() != null && !usuarioAtualizado.getSenha().isBlank()) {
                     usuario.setSenha(passwordEncoder.encode(usuarioAtualizado.getSenha()));
                 }
